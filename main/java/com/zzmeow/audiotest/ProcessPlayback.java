@@ -9,9 +9,7 @@ public class ProcessPlayback {
     private static ProcessPlayback mInstance;
 
     // 通过将构造函数设为私有，外部类无法直接创建该类的对象，只能通过 getInstance() 方法获取
-    private ProcessPlayback() {
-
-    }
+    private ProcessPlayback() { }
 
     public static ProcessPlayback getInstance() {
         if (mInstance == null) {
