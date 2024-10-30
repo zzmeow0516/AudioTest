@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProcessRecord myAudioRecord;
     private ProcessPlayback myAudioTrack;
 
+    public String filePath = "sdcard/DCIM/Audiotest.pcm";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,36 +48,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_stopPlay.setOnClickListener(this);
 
         // 建立映射关系
-        buttonActions.put(R.id.button_start_record, new Runnable() {
-            @Override
-            public void run() {
-                myAudioRecord.startRecord();
-                Log.d(TAG, "Recording started");
-            }
+        // Anonymous new Runnable() can be replaced with lambda
+        buttonActions.put(R.id.button_start_record, () -> {
+            myAudioRecord.startRecord(filePath);
+            Log.d(TAG, "Recording started");
         });
 
-        buttonActions.put(R.id.button_stop_record, new Runnable() {
-            @Override
-            public void run() {
-                myAudioRecord.stopRecord();
-                Log.d(TAG, "Recording stopped");
-            }
+        buttonActions.put(R.id.button_stop_record, () -> {
+            myAudioRecord.stopRecord();
+            Log.d(TAG, "Recording stopped");
         });
 
-        buttonActions.put(R.id.button_start_play, new Runnable() {
-            @Override
-            public void run() {
-                myAudioTrack.startTrack();
-                Log.d(TAG, "Playback started");
-            }
+        buttonActions.put(R.id.button_start_play, () -> {
+            myAudioTrack.startTrack();
+            Log.d(TAG, "Playback started");
         });
 
-        buttonActions.put(R.id.button_stop_play, new Runnable() {
-            @Override
-            public void run() {
-                myAudioTrack.stopTrack();
-                Log.d(TAG, "Playback stopped");
-            }
+        buttonActions.put(R.id.button_stop_play, () -> {
+            myAudioTrack.stopTrack();
+            Log.d(TAG, "Playback stopped");
         });
     }
 
